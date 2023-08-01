@@ -6,6 +6,9 @@ param (
   [String]$TopLevelMGPrefix = "$($env:TOP_LEVEL_MG_PREFIX)",
 
   [Parameter()]
+  [String]$ManagementSubscriptionId = "$($env:MANAGEMENT_SUBSCRIPTION_ID)",
+
+  [Parameter()]
   [String]$TemplateFile = "upstream-releases\$($env:UPSTREAM_RELEASE_VERSION)\infra-as-code\bicep\orchestration\mgDiagSettingsAll\mgDiagSettingsAll.bicep",
 
   [Parameter()]
@@ -24,6 +27,21 @@ $inputObject = @{
   TemplateParameterFile = $TemplateParameterFile
   WhatIf                = $WhatIfEnabled
   Verbose               = $true
+}
+$providers = @('Microsoft.insights')
+
+foreach ($provider in $providers ){
+  $providerStatus= (Get-AzResourceProvider -ListAvailable | Where-Object ProviderNamespace -eq $provider).registrationState
+  if($providerStatus -ne 'Registered'){
+    Write-Host "`n Registering the '$provider' provider"
+    Register-AzResourceProvider -ProviderNamespace $provider
+    do {
+      $providerStatus= (Get-AzResourceProvider -ListAvailable | Where-Object ProviderNamespace -eq $provider).registrationState
+      Write-Host "Waiting for the '$provider' provider registration to complete....waiting 10 seconds"
+      Start-Sleep -Seconds 10
+    } until ($providerStatus -eq 'Registered')
+    Write-Host "`n The '$provider' has been registered successfully"
+  }
 }
 
 New-AzManagementGroupDeployment @inputObject
