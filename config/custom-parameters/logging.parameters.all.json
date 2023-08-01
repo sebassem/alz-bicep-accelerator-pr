@@ -1,0 +1,58 @@
+{
+  "parameters": {
+    "parAutomationAccountName": {
+      "value": "alz-automation-account"
+    },
+    "parLogAnalyticsWorkspaceLocation": {
+      "value": "eastus2"
+    },
+    "parLogAnalyticsWorkspaceLogRetentionInDays": {
+      "value": 365
+    },
+    "parAutomationAccountUseManagedIdentity": {
+      "value": true
+    },
+    "parTags": {
+      "value": {
+        "Environment": "live"
+      }
+    },
+    "parAutomationAccountLocation": {
+      "value": "eastus"
+    },
+    "parTelemetryOptOut": {
+      "value": false
+    },
+    "parLogAnalyticsWorkspaceCapacityReservationLevel": {
+      "value": 100
+    },
+    "parLogAnalyticsWorkspaceSkuName": {
+      "value": "PerGB2018"
+    },
+    "parUseSentinelClassicPricingTiers": {
+      "value": false
+    },
+    "parLogAnalyticsWorkspaceSolutions": {
+      "value": [
+        "AgentHealthAssessment",
+        "AntiMalware",
+        "ChangeTracking",
+        "Security",
+        "SecurityInsights",
+        "SQLAdvancedThreatProtection",
+        "SQLVulnerabilityAssessment",
+        "SQLAssessment",
+        "Updates",
+        "VMInsights"
+      ]
+    },
+    "parLogAnalyticsWorkspaceName": {
+      "value": "alz-log-analytics"
+    },
+    "parLogAnalyticsWorkspaceLinkAutomationAccount": {
+      "value": true
+    }
+  },
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0"
+}
