@@ -28,7 +28,7 @@ $inputObject = @{
   WhatIf                = $WhatIfEnabled
   Verbose               = $true
 }
-$providers = @('Microsoft.insights')
+$providers = @('Microsoft.ApiManagement')
 
 foreach ($provider in $providers ){
   $providerStatus= (Get-AzResourceProvider -ListAvailable | Where-Object ProviderNamespace -eq $provider).registrationState
