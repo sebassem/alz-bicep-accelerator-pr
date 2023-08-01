@@ -43,7 +43,7 @@
       "value": []
     },
     "parTopLevelManagementGroupPrefix": {
-      "value": "alz"
+      "value": "alz2"
     }
   },
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
